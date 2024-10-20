@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_pedido">
+
+    <!-- Título (TextView) -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Pedido"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Campos de texto -->
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nombre Cliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:layout_marginTop="16dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextNumero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Número Cliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextNombre"
+        android:layout_marginTop="16dp"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextProductos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Productos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextNumero"
+        android:layout_marginTop="16dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextDireccion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Dirección"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextProductos"
+        android:layout_marginTop="16dp"
+        android:inputType="textPostalAddress" />
+
+
+    <!-- Botones Llamar, WhatsApp y Maps -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/imbWsp"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="Enviar WhatsApp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_wsp" />
+
+        <ImageButton
+            android:id="@+id/imbDial"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="Llamar"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_dial" />
+
+        <ImageButton
+            android:id="@+id/imbMaps"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="Abrir Maps"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_maps" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
