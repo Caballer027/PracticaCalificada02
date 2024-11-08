@@ -13,18 +13,29 @@ class activity_pedido : AppCompatActivity() {
         setContentView(R.layout.activity_pedido)
 
         // Referencias a los campos de texto
-        val editTextNombre = findViewById<EditText>(R.id.editTextNombre)
-        val editTextNumero = findViewById<EditText>(R.id.editTextNumero)
-        val editTextProductos = findViewById<EditText>(R.id.editTextProductos)
-        val editTextDireccion = findViewById<EditText>(R.id.editTextDireccion)
+        val textViewNombre = findViewById<TextView>(R.id.textViewNombre)
+        val textViewNumero = findViewById<TextView>(R.id.textViewNumero)
+        val textViewProductos = findViewById<TextView>(R.id.textViewProductos)
+        val textViewDireccion = findViewById<TextView>(R.id.textViewDireccion)
 
+        // Obtener los datos del intent
+        val nombre = intent.getStringExtra("nombre")
+        val numero = intent.getStringExtra("numero")
+        val productos = intent.getStringExtra("productos")
+        val direccion = intent.getStringExtra("direccion")
+
+        // Asignar los valores a los TextView
+        textViewNombre.text = nombre
+        textViewNumero.text = numero
+        textViewProductos.text = productos
+        textViewDireccion.text = direccion
 
         // Llamar
         findViewById<ImageButton>(R.id.imbDial).setOnClickListener {
-            val numero = editTextNumero.text.toString()
-            if (numero.isNotEmpty()) {
+            val numeroTelefono = textViewNumero.text.toString()
+            if (numeroTelefono.isNotEmpty()) {
                 val intent = Intent(Intent.ACTION_DIAL).apply {
-                    data = Uri.parse("tel:$numero")
+                    data = Uri.parse("tel:$numeroTelefono")
                 }
                 startActivity(intent)
             } else {
@@ -34,12 +45,12 @@ class activity_pedido : AppCompatActivity() {
 
         // WhatsApp
         findViewById<ImageButton>(R.id.imbWsp).setOnClickListener {
-            val nombre = editTextNombre.text.toString()
-            val productos = editTextProductos.text.toString()
-            val direccion = editTextDireccion.text.toString()
+            val nombreCliente = textViewNombre.text.toString()
+            val listaProductos = textViewProductos.text.toString()
+            val direccionEnvio = textViewDireccion.text.toString()
 
-            if (nombre.isNotEmpty() && productos.isNotEmpty() && direccion.isNotEmpty()) {
-                val mensaje = "Hola $nombre, tus productos: $productos están en camino a la dirección: $direccion"
+            if (nombreCliente.isNotEmpty() && listaProductos.isNotEmpty() && direccionEnvio.isNotEmpty()) {
+                val mensaje = "Hola $nombreCliente, tus productos: $listaProductos están en camino a la dirección: $direccionEnvio"
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     setPackage("com.whatsapp")
@@ -53,9 +64,9 @@ class activity_pedido : AppCompatActivity() {
 
         // Google Maps
         findViewById<ImageButton>(R.id.imbMaps).setOnClickListener {
-            val direccion = editTextDireccion.text.toString()
-            if (direccion.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=$direccion"))
+            val direccionEnvio = textViewDireccion.text.toString()
+            if (direccionEnvio.isNotEmpty()) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=$direccionEnvio"))
                 intent.setPackage("com.google.android.apps.maps")
                 startActivity(intent)
             } else {
